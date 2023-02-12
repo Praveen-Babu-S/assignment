@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Grid from './components/Grid'
+import Header from './components/Header'
+import React from 'react'
+import { useState } from 'react'
+import Loader from './spinner.gif'
 
 function App() {
+  const [data, setData] = useState([])
+  const [isClicked, setIsClicked] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const handleClick = (actualData) => {
+    setIsClicked(true)
+    setIsLoading(true)
+    setData([...actualData.data])
+    setIsLoading(false)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header handleClick={handleClick} />
+      <div className='box'>
+        {!isClicked && <p className='welcome'>Click Get User to fetch users</p>}
+        {isClicked && isLoading && <img className='logo' src={Loader} alt="loading..." />}
+        {
+          data.map((user) => (
+            // console.log(user)
+            < Grid user={user} key={user.id} />
+          ))}
+      </div>
     </div>
   );
 }

@@ -7,6 +7,25 @@
   pointer-events: none;
 }
 
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* border: 1px solid red; */
+}
+
+.logo {
+  margin-top: "7vh";
+  width: "120";
+  height: "120";
+}
+
+.welcome {
+  align-items: "center";
+  margin-top: "10vh";
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -32,6 +51,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
