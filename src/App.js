@@ -9,9 +9,14 @@ function App() {
   const [data, setData] = useState([])
   const [isClicked, setIsClicked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const handleClick = (actualData) => {
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  async function handleClick(actualData) {
     setIsClicked(true)
     setIsLoading(true)
+    await sleep(500);
     setData([...actualData.data])
     setIsLoading(false)
   }
